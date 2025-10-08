@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 19th Birthday | Cindy Putri Ramadhani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #e8eaf6 100%);
+            color: #5a5a5a;
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .birthday-badge {
+            background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 154, 162, 0.3);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #d4a5a5, #b5838d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .birthday-person {
+            font-size: 2rem;
+            color: #b5838d;
+            margin-bottom: 10px;
+            font-weight: 600;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        .birthday-age {
+            font-size: 1.5rem;
+            color: #c49797;
+            margin-bottom: 20px;
+            font-weight: 500;
+            animation: fadeIn 1.5s ease-out 1s both;
+        }
+
+        .birthday-message {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 2s ease-out 1s both;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 400px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .photo-item:nth-child(1) { 
+            animation-delay: 0.2s; 
+        }
+        .photo-item:nth-child(2) { 
+            animation-delay: 0.4s; 
+        }
+
+        .photo-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: brightness(0.95);
+        }
+
+        .photo-item:hover .photo-image {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 25px 20px 20px;
+            color: white;
+            transform: translateY(100px);
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .photo-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .photo-quote {
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .wishes-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,248,250,0.9) 100%);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 50px 0;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.5s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wishes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ff9aa2, #ffb7b2, #ffdac1);
+        }
+
+        .wishes-section h2 {
+            color: #b5838d;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .wishes-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+            border-radius: 2px;
+        }
+
+        .wishes-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+        }
+
+        .wishes-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+            opacity: 0.1;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 90%;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 10%;
+            animation-delay: 6s;
+        }
+
+        .floating-element:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            top: 20%;
+            left: 70%;
+            animation-delay: 8s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #b5838d;
+            font-size: 0.9rem;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 2s forwards;
+            border-top: 1px solid rgba(181, 131, 141, 0.2);
+            margin-top: 40px;
+        }
+
+        /* Balon Animasi */
+        .balloon {
+            position: absolute;
+            width: 35px;
+            height: 45px;
+            border-radius: 50%;
+            z-index: 1;
+            animation: balloonFloat 18s linear infinite;
+            box-shadow: inset -3px -3px 6px rgba(0,0,0,0.1);
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1.5px;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .balloon:nth-child(1) {
+            background: linear-gradient(135deg, #ff9aa2, #ff6b8b);
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .balloon:nth-child(2) {
+            background: linear-gradient(135deg, #ffb7b2, #ff8a80);
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+
+        .balloon:nth-child(3) {
+            background: linear-gradient(135deg, #ffdac1, #ffb74d);
+            left: 30%;
+            animation-delay: 4s;
+            animation-duration: 22s;
+        }
+
+        .balloon:nth-child(4) {
+            background: linear-gradient(135deg, #e2f0cb, #aed581);
+            left: 40%;
+            animation-delay: 6s;
+            animation-duration: 19s;
+        }
+
+        .balloon:nth-child(5) {
+            background: linear-gradient(135deg, #b5ead7, #81c784);
+            left: 50%;
+            animation-delay: 8s;
+            animation-duration: 21s;
+        }
+
+        .balloon:nth-child(6) {
+            background: linear-gradient(135deg, #c7ceea, #7986cb);
+            left: 60%;
+            animation-delay: 10s;
+            animation-duration: 17s;
+        }
+
+        /* Konfeti */
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #f00;
+            opacity: 0.6;
+            z-index: 2;
+            animation: confettiFall 5s linear infinite;
+        }
+
+        /* Heart Animation */
+        .heart {
+            position: absolute;
+            font-size: 18px;
+            color: #ff6b6b;
+            opacity: 0.6;
+            z-index: 1;
+            animation: heartFloat 8s linear infinite;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+            }
+        }
+
+        @keyframes balloonFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            70% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 3px 10px rgba(255, 154, 162, 0.3);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 5px 15px rgba(255, 154, 162, 0.4);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .birthday-person {
+                font-size: 1.6rem;
+            }
+            
+            .birthday-age {
+                font-size: 1.2rem;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .photo-item {
+                height: 350px;
+            }
+            
+            .photo-overlay {
+                padding: 20px 15px 15px;
+            }
+            
+            .photo-title {
+                font-size: 1.2rem;
+            }
+            
+            .photo-quote {
+                font-size: 0.9rem;
+            }
+            
+            .wishes-section {
+                padding: 30px 20px;
+            }
+            
+            .birthday-message {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-item {
+                height: 280px;
+            }
+            
+            .photo-overlay {
+                padding: 15px 12px 12px;
+            }
+            
+            .photo-title {
+                font-size: 1.1rem;
+            }
+            
+            .photo-quote {
+                font-size: 0.85rem;
+            }
+            
+            header {
+                padding: 40px 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <!-- Balon -->
+    <div class="balloons-container"></div>
+
+    <!-- Konfeti -->
+    <div class="confetti-container"></div>
+
+    <!-- Hati -->
+    <div class="hearts-container"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="birthday-badge">✨ Special Celebration ✨</div>
+                <h1>Happy Birthday</h1>
+                <div class="birthday-person">Cindy Putri Ramadhani</div>
+                <div class="birthday-age">ciee udah 19 tahun nih yaaa boo</div>
+                <p class="birthday-message">
+                    Happy Birthday Cindyy yang cantikk dan baik hatii, di hari yang spesial ini buat cindy semoga semua yang kamu inginkan bisa tercapai,
+                     terima kasih buat semua yang selalu ada di hidupmu.
+                    sehat selalu yaaa ibu boss yang cantikk, jangan ngambekan boo
+                </p>
+            </div>
+        </header>
+
+        <section class="photo-gallery">
+            <!-- Foto 1 -->
+            <div class="photo-item">
+                <img src="image/1.jpeg" alt="Cindy's Beautiful Smile" class="photo-image">
+                <div class="photo-overlay">
+                    <div class="photo-title">Cindy's Beautiful Smile</div>
+                    <div class="photo-quote">"senyumnyaa itu lohh"</div>
+                </div>
+            </div>
+            
+            <!-- Foto 2 -->
+            <div class="photo-item">
+                <img src="image/2.jpeg" alt="Cindy's Wonderful Journey" class="photo-image">
+                <div class="photo-overlay">
+                    <div class="photo-title">lucu dan menggemaskan</div>
+                    <div class="photo-quote">"sehat selalu yaaa boo "</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="wishes-section">
+            <h2>Harapan Tulus untuk Cindy</h2>
+            <div class="wishes-text">
+                <p>Di usia <span class="highlight">19 tahun</span> yang penuh makna ini, semoga kamu selalu dikelilingi oleh cinta, tawa, dan kebahagiaan yang tak terhingga.
+                     Teruslah menjadi wanita yang <span class="highlight">berani bermimpi besar</span>, tak takut mengambil risiko, dan selalu percaya pada kemampuanmu sendiri.</p>
+                <p>semoga kamu meraih apa yang kamu impikan, dan selalu meraih kebahagiaan dalam hidupmu.</p>
+                
+                <p style="font-style: italic; margin-top: 25px; padding: 18px; background: linear-gradient(135deg, rgba(255, 245, 245, 0.7), rgba(255, 240, 245, 0.7)); border-radius: 12px; border-left: 4px solid #ff9aa2;">
+                    "Happy Birthday Cindyy, semoga selalu sehat dan bahagia selalu yaaa boo"
+                    "semangat kerja nyaa sayangg"
+                </p>
+                love you Cindyy
+            </div>
+        </section>
+
+        <footer>
+            <p>dari manusia rahasia | Happy 19th Birthday, Cindy!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Membuat balon
+        function createBalloons() {
+            const container = document.querySelector('.balloons-container');
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                
+                // Warna acak untuk balon
+                const colors = [
+                    'linear-gradient(135deg, #ff9aa2, #ff6b8b)',
+                    'linear-gradient(135deg, #ffb7b2, #ff8a80)',
+                    'linear-gradient(135deg, #ffdac1, #ffb74d)',
+                    'linear-gradient(135deg, #e2f0cb, #aed581)',
+                    'linear-gradient(135deg, #b5ead7, #81c784)',
+                    'linear-gradient(135deg, #c7ceea, #7986cb)'
+                ];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.background = randomColor;
+                
+                // Posisi dan animasi acak
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.animationDelay = Math.random() * 20 + 's';
+                balloon.style.animationDuration = (12 + Math.random() * 12) + 's';
+                
+                container.appendChild(balloon);
+            }
+        }
+
+        // Membuat konfeti
+        function createConfetti() {
+            const container = document.querySelector('.confetti-container');
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Warna acak untuk konfeti
+                const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff9ff3', '#54a0ff', '#5f27cd', '#ff9aa2', '#ffb7b2'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.backgroundColor = randomColor;
+                
+                // Posisi dan animasi acak
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 6 + 's';
+                confetti.style.animationDuration = (3 + Math.random() * 4) + 's';
+                
+                // Bentuk konfeti acak
+                confetti.style.width = (5 + Math.random() * 8) + 'px';
+                confetti.style.height = (5 + Math.random() * 8) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                container.appendChild(confetti);
+            }
+        }
+
+        // Membuat hati
+        function createHearts() {
+            const container = document.querySelector('.hearts-container');
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                
+                // Posisi dan animasi acak
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heart.style.animationDuration = (8 + Math.random() * 8) + 's';
+                heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+                
+                container.appendChild(heart);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createBalloons();
+            createConfetti();
+            createHearts();
+            
+            // Animasi tambahan saat scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observasi elemen untuk animasi saat scroll
+            document.querySelectorAll('.photo-item, .wishes-section').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Efek ketikan untuk pesan ulang tahun
+            const birthdayMessage = document.querySelector('.birthday-message');
+            const originalText = birthdayMessage.textContent;
+            birthdayMessage.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    birthdayMessage.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            }
+            
+            // Mulai efek ketikan setelah animasi masuk
+            setTimeout(typeWriter, 2000);
+        });
+    </script>
+</body>
+</html>
